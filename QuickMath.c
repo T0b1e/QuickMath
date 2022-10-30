@@ -89,27 +89,96 @@ int checkNumber(int level, int number2)
 	}
 }
 
-int levelOne(int number1,int number2)
+int levelOne(int number1,int number2) //level 1
 {
+	int Ans = number1+number2;
 	printf("%d + %d = ", number1, number2);
+	printf("Your Answer: ");
+        scanf("%d", &playerAnswer);
+        printf("Your Answer: ");
+        scanf("%d", &playerAnswer);
+	if(Ans)
+	{
+		printf("Go to Next Level!:\n");
+	}
+	else
+	{
+		printf("Your Ans is Wrong!!!");
+	}
 }
 
-int levelTwo()
+int levelTwo(int number1,int number2) //level 2
 {
+	int Ans = number1-number2;
+	printf("%d - %d = ", number1, number2);
+	printf("Your Answer: ");
+        scanf("%d", &playerAnswer);
+        printf("Your Answer: ");
+        scanf("%d", &playerAnswer);
+	if(Ans)
+	{
+		printf("Go to Next Level!:\n");
+	}
+	else
+	{
+		printf("Your Ans is Wrong!!!");
+	}
 	
 }
 
-int levelThree()
+int levelThree(int number1,int number2,int number3) //level 3
 {
+	int Ans = number1+number2-number3;
+	printf("%d + %d - %d = ", number1, number2,number3);
+	printf("Your Answer: ");
+        scanf("%d", &playerAnswer);
+        printf("Your Answer: ");
+        scanf("%d", &playerAnswer);
+	if(Ans)
+	{
+		printf("Go to Next Level!:\n");
+	}
+	else
+	{
+		printf("Your Ans is Wrong!!!");
+	}
 	
 }
 
-int levelFour()
+int levelFour(int number1,int number2) //level 4
 {
+	int Ans = number1+number2;
+	printf("%d + %d = ", number1, number2);
+	printf("Your Answer: ");
+        scanf("%d", &playerAnswer);
+        printf("Your Answer: ");
+        scanf("%d", &playerAnswer);
+	if(Ans)
+	{
+		printf("Go to Next Level!:\n");
+	}
+	else
+	{
+		printf("Your Ans is Wrong!!!");
+	}
 	
 }
 
-int levelFive()
+int levelFive(int number1,int number2) //level 5
 {
+	int Ans = number1+number2;
+	printf("%d + %d = ", number1, number2);
+	printf("Your Answer: ");
+        scanf("%d", &playerAnswer);
+        printf("Your Answer: ");
+        scanf("%d", &playerAnswer);
+	if(Ans)
+	{
+		printf("Go to Next Level!:\n");
+	}
+	else
+	{
+		printf("Your Ans is Wrong!!!");
+	}
 	
 }
