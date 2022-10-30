@@ -5,12 +5,18 @@
 void state();
 int checkNumber();
 
+int levelOne();
+int levelTwo();
+int levelThree();
+int levelFour();
+int levelFive();
+
 main()
 {
 	int i;
 	
 	char playerName[20];
-	int playerScore = 0, playerLevel = 3, number = 1;
+	int playerScore = 0, playerLevel = 1, number = 1, playerAnswer;
 	
 	srand(time(0));
 		
@@ -19,9 +25,37 @@ main()
 	
 	// printf("%d %d", number1, number2);
 	
-	state(playerLevel, playerScore, number);
-	int checkNumber(int playerLevel, int number2);
-	printf("%d", number2);
+	number2 = checkNumber(playerLevel,number2);
+	
+	while (1)
+	{
+		state(playerLevel, playerScore, number);
+		if (playerLevel == 1)
+		{
+			levelOne(number1,number2);
+		}
+		else if (playerLevel == 2)
+		{
+			levelTwo(number1,number2);
+		}
+		else if (playerLevel == 3)
+		{
+			levelThree(number1,number2);
+		}
+		else if (playerLevel == 4)
+		{
+			levelFour(number1,number2);
+		}		
+		else if (playerLevel == 5)
+		{
+			levelFive(number1,number2);
+		}
+		else
+		{
+			printf("End Game");
+		}
+		
+	}
 }
 
 void state(int level, int score, int no)
@@ -31,10 +65,6 @@ void state(int level, int score, int no)
 	printf("Point : %d \n", score);
 }
 
-int getInput()
-{
-
-}
 
 int checkNumber(int level, int number2)
 {
