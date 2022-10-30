@@ -33,22 +33,27 @@ main()
 		if (playerLevel == 1)
 		{
 			levelOne(number1,number2);
+			// Check Answer
 		}
 		else if (playerLevel == 2)
 		{
 			levelTwo(number1,number2);
+			// Check Answer
 		}
 		else if (playerLevel == 3)
 		{
 			levelThree(number1,number2);
+			// Check Answer
 		}
 		else if (playerLevel == 4)
 		{
 			levelFour(number1,number2);
+			// Check Answer
 		}		
 		else if (playerLevel == 5)
 		{
 			levelFive(number1,number2);
+			// Check Answer
 		}
 		else
 		{
@@ -64,7 +69,6 @@ void state(int level, int score, int no)
 	printf("Level : %d ", level);
 	printf("Point : %d \n", score);
 }
-
 
 int checkNumber(int level, int number2)
 {
