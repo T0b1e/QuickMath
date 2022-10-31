@@ -9,7 +9,7 @@ char start(); // text when start game
 char howToPlay(); // text page how to play function
 
 void state();  // Board Above Question Number Attemp Level 
-int checkNumber();
+int checkNumber(); 
 
 int levelOne();
 int levelTwo();
@@ -27,26 +27,25 @@ char endGame(); // text page endGame function
 int number1, number2;
 int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans;
 
+
 main()
 {
 	
 	char s;
-	char playerName[20];
-	s = start();
+	s = start(); // Start Screen Y(Play) H(Help) Q(Exit)
 
-	if (s == 'Y' || s == 'y')
+	if (s == 'Y' || s == 'y') // Play
 	{
-		//playerName[20] =  userName();
-	//printf("%s", playerName);
+		
 	while (1)
 	{
-		int a = 1, u = 1, c, e;
+		int a = 1, u = 1, c, e; // Set function return to default
 		
-		checkNumber(playerLevel);
+		checkNumber(playerLevel); // When level reach 4-5 i decrease hard
 		
-		state(playerLevel, playerScore, number);
+		state(playerLevel, playerScore, number); // Show Board
 		
-		
+		// Check Player Level And Go on Each Level Function
 		if (playerLevel == 1) 		{ a = levelOne(number1,number2);}
 		else if (playerLevel == 2) 	{ a = levelTwo(number1,number2); }
 		else if (playerLevel == 3) 	{ a = levelThree(number1,number2); }
@@ -54,53 +53,60 @@ main()
 		else if (playerLevel == 5) 	{ a = levelFive(number1,number2); }
 		else { printf("Invalid"); }
 		
-		
+		// Get user answer
 		u = userInput();
+		// Check answer is correct or no
 		c = checkAnswer(a, u);
 		
-		if (c == 0)
+		if (u == 404){ break; } //ADMIN COMMAND !!!
+		
+		if (c == 0) // Wrong Answer
 		{ 
 			e = endGame(); 
 			
-			if (e == 0)
+			if (e == 0) // Try again is false GO BACK HOME
 			{
 				printf("\nThank You For Get In Touch with us");
 				break;
 			}
-			else
+			else // Go again
 			{
 				// Reset Valiable
 				playerScore = 0; playerLevel = 1; number = 1; playerAnswer; Ans;
 				continue;
 			}
 		}
+		else if (c == 2) // Pass the game congratulation
+		{
+			break;
+		}
 		
-		number += 1;
+		number += 1; // Attemp number
+		
+		}
 	}
-	}
-	else if (s == 'H' || s == 'h')
+	else if (s == 'H' || s == 'h') // How to play from start line 35
 	{
-		howToPlay();
+		howToPlay(); // Go to how to play funcion page
 	}	
 	else
 	{
-		getch();
+		getch(); // TYPE GET OUT OF THIS GAME
 	}
 	
 }
 
 // ---------- Default ------------
 
-void state()
+void state() // Board
 {
-	// printf("Username : %s ", playerName);
-	printf("\n-----------------\n");
+	printf("\n--------------------\n");
 	printf("Attemp : %d ", number);
 	printf("Level : %d ", playerLevel);
 	printf("Point : %d \n", playerScore);
 }
 
-char start()
+char start() // Start Page
 {	
 	char state;
 	printf("\n\n\n\n\n");
@@ -113,11 +119,10 @@ char start()
 	printf("\n\n\n");
 	printf("ENTER : ");
 	scanf("%s", &state);
-	// printf("%s",  state);
 	return state;
 }
 
-char howToPlay()
+char howToPlay() // How To Play Page
 {
 	char letPlay; // State Did you Play if play go mainGame else Break
 	
@@ -146,13 +151,13 @@ char howToPlay()
 	printf("If there has any bug or Error I am aplogize for that, We will find and improve as soon as possible\n");
 	printf("Hope you Enjoy\n");
 	
-	printf("\nLet Play or Exit (Y/n) ?");
-	scanf("%s", &letPlay);
-	if (letPlay == 'N' || letPlay == 'n') { return 0; }
-	else { start(); return 1; }
+	printf("\nLet Play or Exit (Y/n) ?"); // For get out of this page
+	scanf("%s", &letPlay); 
+	if (letPlay == 'N' || letPlay == 'n') { return 0; } // If not go next then we go home
+	else { start(); return 1; } //  else go previous page start page line 109
 }
 
-char endGame()
+char endGame() // Game over page
 {
 	char playNext;
 	
@@ -164,7 +169,7 @@ char endGame()
 	printf("						Level : %d \n", playerLevel);
 	printf("						Point : %d \n", playerScore);
 	
-	printf("Try Again(Y/n) ?");
+	printf("Try Again(Y/n) ?"); // Go Play Next Game
 	scanf("%s", &playNext);
 	if (playNext == 'N' || playNext == 'n') { return 0; }
 	else { return 1; }
@@ -175,35 +180,34 @@ char endGame()
 
 int checkNumber(int level)
 {
-	int number;
+
+	srand(time(0)); // generate new seed each attemp
 	
-	srand(time(0));
-	
-	if (level == 1)
+	if (level == 1) // Random number 1-10
 	{
 		number1 = (rand() % 10) + 1;
 		number2 = (rand() % 10) + 1;
 	}
-	else if (level == 2)
+	else if (level == 2) // random 1-10
 	{
 		number1 = (rand() % 10) + 1;
 		number2 = (rand() % 10) + 1;
 		
-		if (number2 > number1)
+		if (number2 > number1) // check number to be unnegative ex. -1 -2 -3
 		{
-			srand(time(0));
-			number2 = (rand() % number1) + 1;
+			srand(time(0)); // generate new number
+			number2 = (rand() % number1) + 1; // random number at 1-first number for has more value to be positive minus
 		}
 	}
-	else if (level == 3)
+	else if (level == 3) // random 1-50
 	{
-		number1 = (rand() % 50) + 1;
+		number1 = (rand() % 50) + 1; 
 		number2 = (rand() % 50) + 1;	
 	}
-	else if (level == 4 || level == 5)
+	else if (level == 4 || level == 5) // random 1-50
 	{
 		
-		number1 = (rand() % 50) + 1;
+		number1 = (rand() % 50) + 1; 
 		number2 = (rand() % 10) + 1;
 		
 	}
@@ -211,29 +215,33 @@ int checkNumber(int level)
 
 // ---------- Get Input and Check Answer ------------
 
-int userInput()
+int userInput() 
 {
 	printf("\nYour Answer: ");
     scanf("%d", &playerAnswer);
     return playerAnswer;
 }
 
-
-int checkAnswer(int answer, int userAnswer)
+int checkAnswer(int answer, int userAnswer) // Check answer if correct or no
 {
-	if (answer == userAnswer)
+	if (answer == userAnswer) // Correct Answer
 	{
 		printf("Correct\n");
-		playerScore += 10;
+		playerScore += 10; // Add point 10 points
 		
 		if (playerScore <= 20) { playerLevel = 1 ; return 1;}
 		else if (playerScore > 20 && playerScore <= 50) { playerLevel = 2; return 1;} // 2 round or less 5 round
 		else if (playerScore > 50 && playerScore <= 100) { playerLevel = 3; return 1;}
 		else if (playerScore > 100 && playerScore <= 150) { playerLevel = 4; return 1;}
 		else if (playerScore > 150 && playerScore <= 200) { playerLevel = 5; return 1;}
-		else { printf("Invalid"); return 0;}
+		else // Finish Game
+		{ 
+			printf("\n\n\n              CONGRATULTIONS \n"); 
+			printf("		You can recieve reward from !! Mr. KONGPOP !!");
+			return 2;
+		}
 	}
-	else
+	else // If answer wrong or any case sensitive
 	{
 		printf("Wrong\n");
 		printf("And The correct answer is %d", Ans);
@@ -245,39 +253,39 @@ int checkAnswer(int answer, int userAnswer)
 
 int levelOne(int number1,int number2) //level 1
 {
-	Ans = number1+number2;
-	printf("%d + %d = ", number1, number2);
+	Ans = number1 + number2;
+	printf("\n	%d + %d = \n", number1, number2); // Show Question
 	return Ans;
 }
 
 int levelTwo(int number1,int number2) //level 2
 {
-	Ans = number1-number2;
-	printf("%d - %d = ", number1, number2);
+	Ans = number1 - number2;
+	printf("\n	%d - %d = \n", number1, number2); // Show Question
 	return Ans;
 }
 
 int levelThree(int number1, int number2) //level 3
 {
-	int num = (rand() % 2) + 1;
+	int num = (rand() % 2) + 1; // random number 1-2
 	char d;
-	char operator[2] = {'+', '-'}; 
-	d = operator[num - 1];
-	Ans = num - 1 == 0 ? number1 + number2 : number1 - number2;
-	printf("%d %c %d = ", number1, d, number2);
+	char operator[2] = {'+', '-'};  //ist of operator
+	d = operator[num - 1]; // get in array with random number - 1
+	Ans = num - 1 == 0 ? number1 + number2 : number1 - number2; // Short hand if else of it's + then answer will be + else -
+	printf("\n	%d %c %d = \n", number1, d, number2); // Show Question
 	return Ans;
 }
 
 int levelFour(int number1,int number2) //level 4
 {
 	Ans = number1 * number2;
-	printf("%d * %d = ", number1, number2);
+	printf("\n	%d * %d = \n", number1, number2); // Show Question
 	return Ans;
 }
 
 int levelFive(int number1,int number2) //level 5
 {
 	int Ans = number1 / number2;
-	printf("%d / %d = ", number1, number2);
+	printf("\n	%d ÷ %d = \n", number1, number2); // Show Question
 	return Ans;
 }
