@@ -5,10 +5,10 @@
 
 // ---------- Call Function ------------
 
-char start();
-char userName();
+char start(); // text when start game
+char howToPlay(); // text page how to play function
 
-void state();
+void state();  // Board Above Question Number Attemp Level 
 int checkNumber();
 
 int levelOne();
@@ -20,13 +20,12 @@ int levelFive();
 int userInput();
 int checkAnswer();
 
-void endGame();
+char endGame(); // text page endGame function
 
 // ---------- Global Var ------------
 
 int number1, number2;
 int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans;
-
 
 main()
 {
@@ -38,58 +37,50 @@ main()
 	if (s == 'Y' || s == 'y')
 	{
 		//playerName[20] =  userName();
-		//printf("%s", playerName);
-		while (1)
-		{
-			int a = 1, u = 1, c;
+	//printf("%s", playerName);
+	while (1)
+	{
+		int a = 1, u = 1, c, e;
+		
+		checkNumber(playerLevel);
+		
+		state(playerLevel, playerScore, number);
+		
+		
+		if (playerLevel == 1) 		{ a = levelOne(number1,number2);}
+		else if (playerLevel == 2) 	{ a = levelTwo(number1,number2); }
+		else if (playerLevel == 3) 	{ a = levelThree(number1,number2); }
+		else if (playerLevel == 4) 	{ a = levelFour(number1,number2); }
+		else if (playerLevel == 5) 	{ a = levelFive(number1,number2); }
+		else { printf("Invalid"); }
+		
+		
+		u = userInput();
+		c = checkAnswer(a, u);
+		
+		if (c == 0)
+		{ 
+			e = endGame(); 
 			
-			checkNumber(playerLevel);
-			
-			state(playerLevel, playerScore, number);
-			
-			
-			if (playerLevel == 1) 		{ a = levelOne(number1,number2);}
-			else if (playerLevel == 2) 	{ a = levelTwo(number1,number2); }
-			else if (playerLevel == 3) 	{ a = levelThree(number1,number2); }
-			else if (playerLevel == 4) 	{ a = levelFour(number1,number2); }
-			else if (playerLevel == 5) 	{ a = levelFive(number1,number2); }
-			else { printf("Invalid"); }
-			
-			
-			u = userInput();
-			c = checkAnswer(a, u);
-			
-			if (c == 0){ endGame(); break; }
-			
-			number += 1;
+			if (e == 0)
+			{
+				printf("\nThank You For Get In Touch with us");
+				break;
+			}
+			else
+			{
+				// Reset Valiable
+				playerScore = 0; playerLevel = 1; number = 1; playerAnswer; Ans;
+				continue;
+			}
 		}
+		
+		number += 1;
+	}
 	}
 	else if (s == 'H' || s == 'h')
 	{
-		printf("\n\n\n\n");
-		printf("						How to Play\n");	
-		printf("				This game is created for education and fun purpose\n");
-		
-		printf("					type y in CMD or Y in play\n\n");
-		
-		printf("The Question Will Appear (Ex 1+1= )\n");
-		printf("Then The Answer Space Will Appear (Ex Ans: )\n");
-		printf("If your answer is matched or correct then it will pass to next question to next level \n\n");
-		
-		printf("Game Plan\n");
-		printf("The Level\n");
-		printf("----------------\n");
-		printf("|level 1| +    |\n");
-		printf("|level 2| -    |\n");
-		printf("|level 3| +, - |\n");
-		printf("|level 4| *    |\n");
-		printf("|level 5| /    |\n");
-		printf("----------------\n");
-		printf("In each question will has own 10 point\n\n");
-		
-		printf("Else if your answer is Wrong Then Game Will be over and you can try again by typing y in CMD\n");
-		printf("If there has any bug or Error I am aplogize for that, We will find and improve as soon as possible\n");
-		printf("Hope you Enjoy\n");
+		howToPlay();
 	}	
 	else
 	{
@@ -126,17 +117,45 @@ char start()
 	return state;
 }
 
-char userName()
+char howToPlay()
 {
-	char user[20];
-	printf("UserserName: ");
-	scanf("%s", &user);
-	return user[20];
+	char letPlay; // State Did you Play if play go mainGame else Break
+	
+	printf("\n\n\n\n");
+	printf("						How to Play\n");	
+	printf("				This game is created for education and fun purpose\n");
+	
+	printf("					type y in CMD or Y in play\n\n");
+	
+	printf("The Question Will Appear (Ex 1+1= )\n");
+	printf("Then The Answer Space Will Appear (Ex Ans: )\n");
+	printf("If your answer is matched or correct then it will pass to next question to next level \n\n");
+	
+	printf("Game Plan\n");
+	printf("The Level\n");
+	printf("----------------\n");
+	printf("|level 1| +    |\n");
+	printf("|level 2| -    |\n");
+	printf("|level 3| +, - |\n");
+	printf("|level 4| *    |\n");
+	printf("|level 5| /    |\n");
+	printf("----------------\n");
+	printf("In each question will has own 10 point\n\n");
+	
+	printf("Else if your answer is Wrong Then Game Will be over and you can try again by typing y in CMD\n");
+	printf("If there has any bug or Error I am aplogize for that, We will find and improve as soon as possible\n");
+	printf("Hope you Enjoy\n");
+	
+	printf("\nLet Play or Exit (Y/n) ?");
+	scanf("%s", &letPlay);
+	if (letPlay == 'N' || letPlay == 'n') { return 0; }
+	else { start(); return 1; }
 }
 
-void endGame()
+char endGame()
 {
-	char ans;
+	char playNext;
+	
 	printf("\n							GAME OVER\n");
 	printf("					 Game Over Thank You For Playing Us\n");
 	printf("						   This is Your Score\n");
@@ -146,8 +165,10 @@ void endGame()
 	printf("						Point : %d \n", playerScore);
 	
 	printf("Try Again(Y/n) ?");
-	ans = getchar();
-	ans == 'Y' && printf("Goodluck");
+	scanf("%s", &playNext);
+	if (playNext == 'N' || playNext == 'n') { return 0; }
+	else { return 1; }
+
 }
 
 // Random Number
