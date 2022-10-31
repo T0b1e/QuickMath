@@ -67,7 +67,7 @@ void mainGame()
 	{
 		int a = 1, u = 1, c, e; // Set function return to default
 		
-		checkNumber(playerLevel); // When level reach 4-5 i decrease hard
+		checkNumber(); // When level reach 4-5 i decrease hard
 		
 		state(playerLevel, playerScore, number); // Show Board
 		
@@ -257,21 +257,21 @@ int checkAnswer(int answer, int userAnswer) // Check answer if correct or no
 
 // ---------- Level ------------
 
-int levelOne(int number1,int number2) //level 1
+int levelOne() //level 1
 {
 	Ans = number1 + number2;
 	printf("\n	%d + %d = \n", number1, number2); // Show Question
 	return Ans;
 }
 
-int levelTwo(int number1,int number2) //level 2
+int levelTwo() //level 2
 {
 	Ans = number1 - number2;
 	printf("\n	%d - %d = \n", number1, number2); // Show Question
 	return Ans;
 }
 
-int levelThree(int number1, int number2) //level 3
+int levelThree() //level 3
 {
 	int num = (rand() % 2) + 1; // random number 1-2
 	char d;
@@ -282,14 +282,14 @@ int levelThree(int number1, int number2) //level 3
 	return Ans;
 }
 
-int levelFour(int number1,int number2) //level 4
+int levelFour() //level 4
 {
 	Ans = number1 * number2;
 	printf("\n	%d * %d = \n", number1, number2); // Show Question
 	return Ans;
 }
 
-int levelFive(int number1,int number2) //level 5
+int levelFive() //level 5
 {
 	int Ans = number1 / number2;
 	printf("\n	%d ÷ %d = \n", number1, number2); // Show Question
