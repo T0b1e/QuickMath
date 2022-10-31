@@ -22,7 +22,7 @@ void endGame();
 
 int number1, number2;
 char playerName[20];
-int playerScore = 0, playerLevel = 1, number = 1, playerAnswer;
+int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans;
 
 
 main()
@@ -35,12 +35,15 @@ main()
 		
 		state(playerLevel, playerScore, number);
 		
-		if (playerLevel = 1) 		{ a = levelOne(number1,number2);}
-		else if (playerLevel = 2) 	{ a = levelTwo(number1,number2); }
-		else if (playerLevel = 3) 	{ a = levelThree(number1,number2); }
-		else if (playerLevel = 4) 	{ a = levelFour(number1,number2); }
-		else if (playerLevel = 5) 	{ a = levelFive(number1,number2); }
+		levelThree(number1,number2);
+		/*
+		if (playerLevel == 1) 		{ a = levelOne(number1,number2);}
+		else if (playerLevel == 2) 	{ a = levelTwo(number1,number2); }
+		else if (playerLevel == 3) 	{ a = levelThree(number1,number2); }
+		else if (playerLevel == 4) 	{ a = levelFour(number1,number2); }
+		else if (playerLevel == 5) 	{ a = levelFive(number1,number2); }
 		else { printf("Invalid"); }
+		*/
 		
 		u = userInput();
 		c = checkAnswer(a, u);
@@ -139,7 +142,7 @@ int checkAnswer(int answer, int userAnswer)
 		playerScore += 10;
 		
 		if (playerScore <= 20) { playerLevel = 1 ; return 1;}
-		else if (playerScore > 20 && playerScore <= 50) { playerLevel = 2; return 1;}
+		else if (playerScore > 20 && playerScore <= 50) { playerLevel = 2; return 1;} // 2 round or less 5 round
 		else if (playerScore > 50 && playerScore <= 100) { playerLevel = 3; return 1;}
 		else if (playerScore > 100 && playerScore <= 150) { playerLevel = 4; return 1;}
 		else if (playerScore > 150 && playerScore <= 200) { playerLevel = 5; return 1;}
@@ -148,6 +151,7 @@ int checkAnswer(int answer, int userAnswer)
 	else
 	{
 		printf("Wrong\n");
+		printf("And The correct answer is %d", Ans);
 	}
 }
 
@@ -155,35 +159,40 @@ int checkAnswer(int answer, int userAnswer)
 
 int levelOne(int number1,int number2) //level 1
 {
-	int Ans = number1+number2;
+	Ans = number1+number2;
 	printf("%d + %d = ", number1, number2);
 	return Ans;
 }
 
 int levelTwo(int number1,int number2) //level 2
 {
-	int Ans = number1-number2;
+	Ans = number1-number2;
 	printf("%d - %d = ", number1, number2);
 	return Ans;
 }
 
-int levelThree(int number1,int number2,int number3) //level 3
+int levelThree(int number1, int number2) //level 3
 {
-	int Ans = number1+number2;
-	printf("%d + %d = ", number1, number2);
+	char d;
+	char operator[2] = {'+', '-'};  // Error -----------------------------------------------------------------------------
+	d = operator[(rand() % 1) + 1];
+	printf("%c", operator[0]);
+	printf("%s\n", d);
+	Ans = d == 43 ? number1 + number2 : number1 - number2;
+	printf("%d %c %d = ", number1, d, number2);
 	return Ans;
 }
 
 int levelFour(int number1,int number2) //level 4
 {
-	int Ans = number1+number2;
-	printf("%d + %d = ", number1, number2);
+	Ans = number1 * number2;
+	printf("%d * %d = ", number1, number2);
 	return Ans;
 }
 
 int levelFive(int number1,int number2) //level 5
 {
-	int Ans = number1+number2;
-	printf("%d + %d = ", number1, number2);
+	int Ans = number1 / number2;
+	printf("%d / %d = ", number1, number2);
 	return Ans;
 }
