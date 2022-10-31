@@ -184,17 +184,17 @@ char endGame() // Game over page
 
 // Random Number
 
-int checkNumber(int level)
+int checkNumber()
 {
 
 	srand(time(0)); // generate new seed each attemp
 	
-	if (level == 1) // Random number 1-10
+	if (playerLevel == 1) // Random number 1-10
 	{
 		number1 = (rand() % 10) + 1;
 		number2 = (rand() % 10) + 1;
 	}
-	else if (level == 2) // random 1-10
+	else if (playerLevel == 2) // random 1-10
 	{
 		number1 = (rand() % 10) + 1;
 		number2 = (rand() % 10) + 1;
@@ -205,12 +205,12 @@ int checkNumber(int level)
 			number2 = (rand() % number1) + 1; // random number at 1-first number for has more value to be positive minus
 		}
 	}
-	else if (level == 3) // random 1-50
+	else if (playerLevel == 3) // random 1-50
 	{
 		number1 = (rand() % 50) + 1; 
 		number2 = (rand() % 50) + 1;	
 	}
-	else if (level == 4 || level == 5) // random 1-50
+	else if (playerLevel == 4 || playerLevel == 5) // random 1-50
 	{
 		
 		number1 = (rand() % 50) + 1; 
