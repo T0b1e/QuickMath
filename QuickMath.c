@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<time.h>
+#include <conio.h>
 
 // ---------- Call Function ------------
 
@@ -160,7 +160,7 @@ char howToPlay() // How To Play Page
 	printf("\nLet Play or Exit (Y/n) ?"); // For get out of this page
 	scanf("%s", &letPlay); 
 	if (letPlay == 'N' || letPlay == 'n') { return 0; } // If not go next then we go home
-	else { main(); return 1; } //  else go previous page start page line 109
+	else { mainGame(); return 1; } //  else go previous page start page line 109
 }
 
 char endGame() // Game over page
@@ -214,7 +214,7 @@ int checkNumber(int level)
 	{
 		
 		number1 = (rand() % 50) + 1; 
-		number2 = (rand() % 10) + 1;
+		number2 = (rand() % 10) + 1; // secondary number is less than 10
 		
 	}
 }
