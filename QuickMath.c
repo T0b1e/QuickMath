@@ -9,6 +9,7 @@ char start(); // text when start game
 char howToPlay(); // text page how to play function
 
 void state();  // Board Above Question Number Attemp Level 
+void mainGame();
 int checkNumber(); 
 
 int levelOne();
@@ -36,7 +37,32 @@ main()
 
 	if (s == 'Y' || s == 'y') // Play
 	{
-		
+		mainGame();
+	}
+	else if (s == 'H' || s == 'h') // How to play from start line 35
+	{
+		howToPlay(); // Go to how to play funcion page
+	}	
+	else
+	{
+		getch(); // TYPE GET OUT OF THIS GAME
+	}
+	
+}
+
+// ---------- Default ------------
+
+void state() // Board
+{
+	printf("\n--------------------\n");
+	printf("Attemp : %d ", number);
+	printf("Level : %d ", playerLevel);
+	printf("Point : %d \n", playerScore);
+}
+
+void mainGame()
+{
+			
 	while (1)
 	{
 		int a = 1, u = 1, c, e; // Set function return to default
@@ -84,26 +110,6 @@ main()
 		number += 1; // Attemp number
 		
 		}
-	}
-	else if (s == 'H' || s == 'h') // How to play from start line 35
-	{
-		howToPlay(); // Go to how to play funcion page
-	}	
-	else
-	{
-		getch(); // TYPE GET OUT OF THIS GAME
-	}
-	
-}
-
-// ---------- Default ------------
-
-void state() // Board
-{
-	printf("\n--------------------\n");
-	printf("Attemp : %d ", number);
-	printf("Level : %d ", playerLevel);
-	printf("Point : %d \n", playerScore);
 }
 
 char start() // Start Page
@@ -154,7 +160,7 @@ char howToPlay() // How To Play Page
 	printf("\nLet Play or Exit (Y/n) ?"); // For get out of this page
 	scanf("%s", &letPlay); 
 	if (letPlay == 'N' || letPlay == 'n') { return 0; } // If not go next then we go home
-	else { start(); return 1; } //  else go previous page start page line 109
+	else { main(); return 1; } //  else go previous page start page line 109
 }
 
 char endGame() // Game over page
