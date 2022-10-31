@@ -26,7 +26,7 @@ char endGame(); // text page endGame function
 // ---------- Global Var ------------
 
 int number1, number2;
-int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans;
+int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans, a = 1, u = 1;
 
 
 main()
@@ -65,24 +65,24 @@ void mainGame()
 			
 	while (1)
 	{
-		int a = 1, u = 1, c, e; // Set function return to default
+		int c, e; // Set function return to default
 		
-		checkNumber(); // When level reach 4-5 i decrease hard
+		checkNumber	(); // When level reach 4-5 i decrease hard
 		
-		state(playerLevel, playerScore, number); // Show Board
+		state(); // Show Board
 		
 		// Check Player Level And Go on Each Level Function
-		if (playerLevel == 1) 		{ a = levelOne(number1,number2);}
-		else if (playerLevel == 2) 	{ a = levelTwo(number1,number2); }
-		else if (playerLevel == 3) 	{ a = levelThree(number1,number2); }
-		else if (playerLevel == 4) 	{ a = levelFour(number1,number2); }
-		else if (playerLevel == 5) 	{ a = levelFive(number1,number2); }
+		if (playerLevel == 1) 		{ a = levelOne();}
+		else if (playerLevel == 2) 	{ a = levelTwo(); }
+		else if (playerLevel == 3) 	{ a = levelThree(); }
+		else if (playerLevel == 4) 	{ a = levelFour(); }
+		else if (playerLevel == 5) 	{ a = levelFive(); }
 		else { printf("Invalid"); }
 		
 		// Get user answer
 		u = userInput();
 		// Check answer is correct or no
-		c = checkAnswer(a, u);
+		c = checkAnswer();
 		
 		if (u == 404){ break; } //ADMIN COMMAND !!!
 		
@@ -228,9 +228,9 @@ int userInput()
     return playerAnswer;
 }
 
-int checkAnswer(int answer, int userAnswer) // Check answer if correct or no
+int checkAnswer() // Check answer if correct or no
 {
-	if (answer == userAnswer) // Correct Answer
+	if (a == u) // Correct Answer
 	{
 		printf("Correct\n");
 		playerScore += 10; // Add point 10 points
