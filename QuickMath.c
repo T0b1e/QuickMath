@@ -254,7 +254,7 @@ int checkAnswer() // Check answer if correct or no
 		else if (playerScore > 150 && playerScore <= 200) { playerLevel = 5; return 1;}
 		else // Finish Game
 		{ 
-			printf("\n\n\n              CONGRATULTIONS \n"); 
+			printf("\n\n\n             CONGRATULTIONS \n"); 
 			printf("	You can recieve reward from !! Mr. KONGPOP !!");
 			return 2; // return 2 is mean congratulations
 		}
@@ -288,12 +288,12 @@ int levelThree() //level 3
 	int num = (rand() % 2) + 1; // random number 1-2
 	if (num == 1)
 	{
-		printf("\n  %d + %d = \n", number1, number2);
+		printf("\n    %d + %d = \n", number1, number2);
 		Ans = number1 + number2;
 	}
 	else
 	{
-		printf("\n  %d - %d = \n", number1, number2);
+		printf("\n    %d - %d = \n", number1, number2);
 		Ans = number1 - number2;
 	}
 	return Ans;
@@ -309,6 +309,6 @@ int levelFour() //level 4
 int levelFive() //level 5
 {
 	int Ans = number1 / number2;
-	printf("\n	%d %c %d = \n", number1, 247, number2); // Show Question
+	printf("\n	%d / %d = \n", number1, number2); // Show Question
 	return Ans;
 }
