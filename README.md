@@ -6,7 +6,7 @@
 - random.h
 - time.h
 ---
-<img src="./docs/start (2).png" height="120" width="100" >
+<img src="./docs/start (2).png" >
 
 ---
 ## วิธีการเล่น
