@@ -6,10 +6,15 @@
 - random.h
 - time.h
 ---
-<img src="/docs/start (2)" height="60" width="60" >
+### Main Page
+<img src="./docs/start (2).png" >
 
+### Second Page
+<img src="./docs/2022-11-01 (4).png" >
 ---
+
 ## วิธีการเล่น
+
 1. รันโค้ด
 2. พิมพ์ S Start เพื่อเริ่มเกม
 3. โปรแกรมจะทำการแสดงตัวเลขโจทย์ขึ้นมาโดยเรียงลำดับความยากง่ายตามเลเวล
