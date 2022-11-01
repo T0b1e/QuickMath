@@ -206,22 +206,22 @@ int checkNumber()
 	else if (playerLevel == 2) // random 1-10
 	{
 		number1 = (rand() % 10) + 1;
-		number2 = (rand() % 10) + 1;
+		number2 = (rand() % 10) + 2;
 		
 		if (number2 > number1) // check number to be unnegative ex. -1 -2 -3
 		{
 			srand(time(0)); // generate new number
-			number2 = (rand() % number1) + 1; // random number at 1-first number for has more value to be positive minus
+			number2 = (rand() % 10) + number1; // random number at 1-first number for has more value to be positive minus
 		}
 	}
 	else if (playerLevel == 3) // random 1-50
 	{
-		number1 = (rand() % 50) + 1; 
-		number2 = (rand() % 50) + 1;
+		number1 = (rand() % 50) + 2; 
+		number2 = (rand() % 50) + 2;
 		if (number2 > number1) // check number to be unnegative ex. -1 -2 -3
 		{
 			srand(time(0)); // generate new number
-			number2 = (rand() % number1) + 1; // random number at 1-first number for has more value to be positive minus
+			number2 = (rand() % 50) + number1; // random number at 1-first number for has more value to be positive minus
 		}	
 	}
 	else if (playerLevel == 4 || playerLevel == 5) // random 1-50
@@ -229,12 +229,13 @@ int checkNumber()
 		
 		number1 = (rand() % 50) + 2; 
 		number2 = (rand() % 10) + 2; // secondary number is less than 10
+		printf("%d %d %d", number1, number2 , number1 % number2);
 		if (number1 % number2 != 0) 
 		{
 			number2 -= (number1 % number2); //try to be odd and even number
 			if (number1 % number2 != 0) // For make sure second number should be divided correctly
 			{ 
-				number2 -= (number1 % number2);
+				number2 += (number1 % number2);
 			}
 		}
 		
