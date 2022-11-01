@@ -29,7 +29,6 @@ char endGame(); // text page endGame function
 int number1, number2;
 int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans, a = 1, u = 1;
 
-
 main()
 {
 	
@@ -63,6 +62,7 @@ void state() // Board
 
 void mainGame()
 {
+	time_t startTime = time(NULL);
 			
 	while (1)
 	{
@@ -85,7 +85,7 @@ void mainGame()
 		// Check answer is correct or no
 		c = checkAnswer();
 		
-		if (u == 404){ break; } //ADMIN COMMAND !!!
+		if (u == 404){ time_t end = time(NULL); break; } //ADMIN COMMAND !!!
 		
 		if (c == 0) // Wrong Answer
 		{ 
@@ -93,6 +93,7 @@ void mainGame()
 			
 			if (e == 0) // Try again is false GO BACK HOME
 			{
+				time_t endTime = time(NULL);
 				printf("\nThank You For Get In Touch with us");
 				break;
 			}
@@ -105,6 +106,7 @@ void mainGame()
 		}
 		else if (c == 2) // Pass the game congratulation
 		{
+			time_t end = time(NULL);
 			break;
 		}
 		
@@ -172,13 +174,14 @@ char endGame() // Game over page
 	printf("					 Game Over Thank You For Playing Us\n");
 	printf("						   This is Your Score\n");
 	printf("\n						---------------------------\n");
+	printf("						TimeUsage : %d \n", playerTimeUsage);
 	printf("						Attemp : %d \n", number);
 	printf("						Level : %d \n", playerLevel);
 	printf("						Point : %d \n", playerScore);
 	
 	printf("Try Again(Y/n) ?"); // Go Play Next Game
 	scanf("%s", &playNext);
-	if (playNext == 'N' || playNext == 'n') { return 0; }
+	if (playNext == 'N' || playNext == 'n') { return 0; } // if play again then return value to 0
 	else { return 1; }
 
 }
@@ -230,7 +233,11 @@ int userInput()
 {
 	printf("\nYour Answer: ");
     scanf("%d", &playerAnswer);
-    return playerAnswer;
+    if (playerAnswer){ playerAnswer; } // Check if user input something isn't NULL or EMPTY
+    else {
+    	return 0;
+	}
+
 }
 
 int checkAnswer() // Check answer if correct or no
