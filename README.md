@@ -6,8 +6,10 @@
 - random.h
 - time.h
 ---
+### Main Page
 <img src="./docs/start (2).png" >
-
+### Second Page
+<img src="./docs/2022-11-01 (4).png" >
 ---
 ## วิธีการเล่น
 1. รันโค้ด
