@@ -55,7 +55,7 @@ main()
 
 void state() // Board
 {
-	printf("\n--------------------\n");
+	printf("\n------------------------\n");
 	printf("Attemp : %d ", number);
 	printf("Level : %d ", playerLevel);
 	printf("Point : %d \n", playerScore);
@@ -216,6 +216,10 @@ int checkNumber()
 		
 		number1 = (rand() % 50) + 1; 
 		number2 = (rand() % 10) + 1; // secondary number is less than 10
+		if (number1 % number2 != 0) 
+		{
+			number2 += 1; //try to be odd number
+		}
 		
 	}
 }
@@ -236,7 +240,7 @@ int checkAnswer() // Check answer if correct or no
 		printf("Correct\n");
 		playerScore += 10; // Add point 10 points
 		
-		if (playerScore <= 20) { playerLevel = 1 ; return 1;}
+		if (playerScore <= 20) { playerLevel = 1 ; return 1;} // return 1 it mean correct
 		else if (playerScore > 20 && playerScore <= 50) { playerLevel = 2; return 1;} // 2 round or less 5 round
 		else if (playerScore > 50 && playerScore <= 100) { playerLevel = 3; return 1;}
 		else if (playerScore > 100 && playerScore <= 150) { playerLevel = 4; return 1;}
@@ -245,14 +249,14 @@ int checkAnswer() // Check answer if correct or no
 		{ 
 			printf("\n\n\n              CONGRATULTIONS \n"); 
 			printf("		You can recieve reward from !! Mr. KONGPOP !!");
-			return 2;
+			return 2; // return 2 is mean congratulations
 		}
 	}
 	else // If answer wrong or any case sensitive
 	{
 		printf("Wrong\n");
 		printf("And The correct answer is %d", Ans);
-		return 0;
+		return 0; // return 0 for wrong answer
 	}
 }
 
@@ -293,6 +297,6 @@ int levelFour() //level 4
 int levelFive() //level 5
 {
 	int Ans = number1 / number2;
-	printf("\n	%d ÷ %d = \n", number1, number2); // Show Question
+	printf("\n	%d %c %d = \n", number1, 247, number2); // Show Question
 	return Ans;
 }
