@@ -286,11 +286,16 @@ int levelTwo() //level 2
 int levelThree() //level 3
 {
 	int num = (rand() % 2) + 1; // random number 1-2
-	char d;
-	char operator[2] = {'+', '-'};  //ist of operator
-	d = operator[num - 1]; // get in array with random number - 1
-	Ans = num - 1 == 0 ? number1 + number2 : number1 - number2; // Short hand if else of it's + then answer will be + else -
-	printf("\n	%d %c %d = \n", number1, d, number2); // Show Question
+	if (num == 1)
+	{
+		printf("\n  %d + %d = \n", number1, number2);
+		Ans = number1 + number2;
+	}
+	else
+	{
+		printf("\n  %d - %d = \n", number1, number2);
+		Ans = number1 - number2;
+	}
 	return Ans;
 }
 
