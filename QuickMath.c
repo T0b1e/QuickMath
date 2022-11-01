@@ -31,7 +31,6 @@ int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans, a = 1, u = 
 
 main()
 {
-	
 	char s;
 	s = start(); // Start Screen Y(Play) H(Help) Q(Exit)
 
@@ -47,7 +46,6 @@ main()
 	{
 		getch(); // TYPE GET OUT OF THIS GAME
 	}
-	
 }
 
 // ---------- Default ------------
@@ -62,8 +60,7 @@ void state() // Board
 
 void mainGame()
 {
-	time_t startTime = time(NULL);
-			
+		
 	while (1)
 	{
 		int c, e; // Set function return to default
@@ -73,6 +70,7 @@ void mainGame()
 		state(); // Show Board
 		
 		// Check Player Level And Go on Each Level Function
+		
 		if (playerLevel == 1) 		{ a = levelOne();}
 		else if (playerLevel == 2) 	{ a = levelTwo(); }
 		else if (playerLevel == 3) 	{ a = levelThree(); }
@@ -113,6 +111,7 @@ void mainGame()
 		number += 1; // Attemp number
 		
 		}
+		
 }
 
 char start() // Start Page
@@ -174,7 +173,6 @@ char endGame() // Game over page
 	printf("					 Game Over Thank You For Playing Us\n");
 	printf("						   This is Your Score\n");
 	printf("\n						---------------------------\n");
-	printf("						TimeUsage : %d \n", playerTimeUsage);
 	printf("						Attemp : %d \n", number);
 	printf("						Level : %d \n", playerLevel);
 	printf("						Point : %d \n", playerScore);
@@ -221,7 +219,7 @@ int checkNumber()
 		number2 = (rand() % 10) + 1; // secondary number is less than 10
 		if (number1 % number2 != 0) 
 		{
-			number2 += 1; //try to be odd number
+			number2 -= (number1 % number2); //try to be odd number
 		}
 		
 	}
@@ -255,7 +253,7 @@ int checkAnswer() // Check answer if correct or no
 		else // Finish Game
 		{ 
 			printf("\n\n\n              CONGRATULTIONS \n"); 
-			printf("		You can recieve reward from !! Mr. KONGPOP !!");
+			printf("	You can recieve reward from !! Mr. KONGPOP !!");
 			return 2; // return 2 is mean congratulations
 		}
 	}
