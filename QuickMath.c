@@ -1,7 +1,6 @@
 // Quick Math Game Project
 
 #include<stdio.h>
-#include<stdlib.h>
 #include<string.h>
 #include<time.h>
 #include<conio.h>
@@ -12,33 +11,39 @@ char start(); // text when start game
 char howToPlay(); // text page how to play function
 
 void state();  // Board Above Question Number Attemp Level 
-void mainGame();
-int checkNumber(); 
+void mainGame(); // Function call main process
+int checkNumber(); // Checking numberical for reduce negative number
 
-int levelOne();
-int levelTwo();
-int levelThree();
-int levelFour();
-int levelFive();
+int levelOne(); // +
+int levelTwo(); // -
+int levelThree(); // +, -
+int levelFour(); // *
+int levelFive(); // /
 
-int userInput();
-int checkAnswer();
+int userInput(); // get user answer
+int checkAnswer(); // check if correct or wrong
 
 char endGame(); // text page endGame function
 
 // ---------- Global Var ------------
 
-int number1, number2;
-int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans, a = 1, u = 1;
+int number1, number2; // Change everytime and use in a lot of func so it would be wasier if i did global var
+int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans, a = 1, u = 1; 
+double time_taken = 0;
 
 main()
 {
 	char s;
+	clock_t t;
+    
 	s = start(); // Start Screen Y(Play) H(Help) Q(Exit)
 
 	if (s == 'Y' || s == 'y') // Play
 	{
+		t = clock();
 		mainGame();
+		t = clock() - t;
+		time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
 	}
 	else if (s == 'H' || s == 'h') // How to play from start line 35
 	{
@@ -62,8 +67,7 @@ void state() // Board
 
 void mainGame()
 {
-		
-	while (1)
+	while (1) // While True
 	{
 		int c, e; // Set function return to default
 		
@@ -106,7 +110,7 @@ void mainGame()
 		}
 		else if (c == 2) // Pass the game congratulation
 		{
-			time_t end = time(NULL);
+			time_t end = time(NULL); // Stop time clock
 			break;
 		}
 		
@@ -129,7 +133,7 @@ char start() // Start Page
 	printf("\n\n\n");
 	printf("ENTER : ");
 	scanf("%s", &state);
-	return state;
+	return state; // return state value (y, h, q)
 }
 
 char howToPlay() // How To Play Page
@@ -178,11 +182,23 @@ char endGame() // Game over page
 	printf("						Attemp : %d \n", number);
 	printf("						Level : %d \n", playerLevel);
 	printf("						Point : %d \n", playerScore);
-	
-	printf("Try Again(Y/n) ?"); // Go Play Next Game
+	printf("						Time : %d \n", time_taken);
+	printf("Try Again(Y/n) ?: "); // Go Play Next Game
 	scanf("%s", &playNext);
+	printf("\n                              			*** END Credit ***\n");
+	
+	printf("\n					Narongkorn Kitrungrot 6505065\n");
+	printf("					Patiphat Sombat 6506335\n");
+	printf("					Kongpop Chomseang 6506201\n");
+	printf("					Nattapat Mosagul 6505486\n");
+	printf("					Sathaporn Wongwaikitkajohn 6505252\n");
+	printf("\n   						 In TERM | PRIVACY \n");
+	
+	printf("\nThis Game Is Testing\n");
+	printf("Please Donate Monny For us\n");
+	
 	if (playNext == 'N' || playNext == 'n') { return 0; } // if play again then return value to 0
-	else { return 1; }
+	else { return 1; } 
 
 }
 
@@ -200,7 +216,7 @@ int checkNumber()
 		
 		if (number1 == number2)
 		{
-			number2 = (rand() % 10) + 1;
+			number2 = (rand() % 10) + 1; // generate new number to be not same as number 1
 		}
 	}
 	else if (playerLevel == 2) // random 1-10
@@ -208,20 +224,20 @@ int checkNumber()
 		number1 = (rand() % 10) + 1;
 		number2 = (rand() % 10) + 2;
 		
-		if (number2 > number1) // check number to be unnegative ex. -1 -2 -3
+		if (number2 >= number1) // check number to be unnegative ex. -1 -2 -3
 		{
 			srand(time(0)); // generate new number
-			number2 = (rand() % 10) + number1; // random number at 1-first number for has more value to be positive minus
+			number1 = (rand() % 10) + number2; // random number at 1-first number for has more value to be positive minus
 		}
 	}
 	else if (playerLevel == 3) // random 1-50
 	{
 		number1 = (rand() % 50) + 2; 
 		number2 = (rand() % 50) + 2;
-		if (number2 > number1) // check number to be unnegative ex. -1 -2 -3
+		if (number2 >= number1) // check number to be unnegative ex. -1 -2 -3
 		{
 			srand(time(0)); // generate new number
-			number2 = (rand() % 50) + number1; // random number at 1-first number for has more value to be positive minus
+			number1 = (rand() % 50) + number2; // random number at 1-first number for has more value to be positive minus
 		}	
 	}
 	else if (playerLevel == 4 || playerLevel == 5) // random 1-50
@@ -235,7 +251,7 @@ int checkNumber()
 			number2 -= (number1 % number2); //try to be odd and even number
 			if (number1 % number2 != 0) // For make sure second number should be divided correctly
 			{ 
-				number2 += (number1 % number2);
+				number1 += (number1 % number2);
 			}
 		}
 		
