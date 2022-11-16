@@ -107,7 +107,7 @@ void mainGame()
 				else // Go again
 				{
 					// Reset Valiable
-					playerScore = 0; playerLevel = 1; number = 1; playerAnswer; Ans;
+					playerScore = 0; playerLevel = 1; number = 1; playerAnswer; Ans, health = 3;
 					continue;
 				}
 			}
