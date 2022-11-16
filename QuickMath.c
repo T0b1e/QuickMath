@@ -29,21 +29,16 @@ char endGame(); // text page endGame function
 
 int number1, number2; // Change everytime and use in a lot of func so it would be wasier if i did global var
 int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans, a = 1, u = 1; 
-double time_taken = 0;
 
 main()
 {
 	char s;
-	clock_t t;
-    
+
 	s = start(); // Start Screen Y(Play) H(Help) Q(Exit)
 
 	if (s == 'Y' || s == 'y') // Play
 	{
-		t = clock();
 		mainGame();
-		t = clock() - t;
-		time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
 	}
 	else if (s == 'H' || s == 'h') // How to play from start line 35
 	{
@@ -66,7 +61,10 @@ void state() // Board
 }
 
 void mainGame()
-{
+{	
+	clock_t t;
+	t = clock();
+			
 	while (1) // While True
 	{
 		int c, e; // Set function return to default
@@ -89,15 +87,17 @@ void mainGame()
 		// Check answer is correct or no
 		c = checkAnswer();
 		
-		if (u == 404){ time_t end = time(NULL); break; } //ADMIN COMMAND !!!
+		// if (u == 404){ time_t end = time(NULL); break; } //ADMIN COMMAND !!!
 		
 		if (c == 0) // Wrong Answer
 		{ 
-			e = endGame(); 
+			t = clock() - t;
+			double time_taken = ((double)t) / CLOCKS_PER_SEC; // in seconds
+			
+			e = endGame(time_taken); 
 			
 			if (e == 0) // Try again is false GO BACK HOME
 			{
-				time_t endTime = time(NULL);
 				printf("\nThank You For Get In Touch with us");
 				break;
 			}
@@ -110,7 +110,6 @@ void mainGame()
 		}
 		else if (c == 2) // Pass the game congratulation
 		{
-			time_t end = time(NULL); // Stop time clock
 			break;
 		}
 		
@@ -171,7 +170,7 @@ char howToPlay() // How To Play Page
 	else { mainGame(); return 1; } //  else go previous page start page line 109
 }
 
-char endGame() // Game over page
+char endGame(double time_usage) // Game over page
 {
 	char playNext;
 	
@@ -182,7 +181,7 @@ char endGame() // Game over page
 	printf("						Attemp : %d \n", number);
 	printf("						Level : %d \n", playerLevel);
 	printf("						Point : %d \n", playerScore);
-	printf("						Time : %d \n", time_taken);
+	printf("						Time : %f \n", time_usage);
 	printf("Try Again(Y/n) ?: "); // Go Play Next Game
 	scanf("%s", &playNext);
 	printf("\n                              			*** END Credit ***\n");
@@ -321,7 +320,8 @@ int levelThree() //level 3
 	{
 		printf("\n    %d + %d = \n", number1, number2);
 		Ans = number1 + number2;
-	}
+
+	} 
 	else
 	{
 		printf("\n    %d - %d = \n", number1, number2);
