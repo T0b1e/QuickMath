@@ -29,7 +29,7 @@ char endGame(); // text page endGame function
 
 int number1, number2; // Change everytime and use in a lot of func so it would be wasier if i did global var
 int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans, a = 1, u = 1; 
-
+int health = 3;
 main()
 {
 	char s;
@@ -56,6 +56,7 @@ void state() // Board
 {
 	printf("\n------------------------\n");
 	printf("Attemp : %d ", number);
+	printf("Health : %d \n", health);
 	printf("Level : %d ", playerLevel);
 	printf("Point : %d \n", playerScore);
 }
@@ -91,22 +92,26 @@ void mainGame()
 		
 		if (c == 0) // Wrong Answer
 		{ 
-			t = clock() - t;
-			double time_taken = ((double)t) / CLOCKS_PER_SEC; // in seconds
-			
-			e = endGame(time_taken); 
-			
-			if (e == 0) // Try again is false GO BACK HOME
+			if (health == 0)
 			{
-				printf("\nThank You For Get In Touch with us");
-				break;
+				t = clock() - t;
+				double time_taken = ((double)t) / CLOCKS_PER_SEC; // in seconds
+				
+				e = endGame(time_taken); 
+				
+				if (e == 0) // Try again is false GO BACK HOME
+				{
+					printf("\nThank You For Get In Touch with us");
+					break;
+				}
+				else // Go again
+				{
+					// Reset Valiable
+					playerScore = 0; playerLevel = 1; number = 1; playerAnswer; Ans;
+					continue;
+				}
 			}
-			else // Go again
-			{
-				// Reset Valiable
-				playerScore = 0; playerLevel = 1; number = 1; playerAnswer; Ans;
-				continue;
-			}
+			
 		}
 		else if (c == 2) // Pass the game congratulation
 		{
@@ -291,6 +296,7 @@ int checkAnswer() // Check answer if correct or no
 	}
 	else // If answer wrong or any case sensitive
 	{
+		health -= 1;
 		printf("Wrong\n");
 		printf("And The correct answer is %d", Ans);
 		return 0; // return 0 for wrong answer
