@@ -75,7 +75,6 @@ void mainGame()
 		state(); // Show Board
 		
 		// Check Player Level And Go on Each Level Function
-		
 		if (playerLevel == 1) 		{ a = levelOne();}
 		else if (playerLevel == 2) 	{ a = levelTwo(); }
 		else if (playerLevel == 3) 	{ a = levelThree(); }
@@ -230,7 +229,6 @@ int checkNumber()
 		
 		if (number2 >= number1) // check number to be unnegative ex. -1 -2 -3
 		{
-			srand(time(0)); // generate new number
 			number1 = (rand() % 10) + number2; // random number at 1-first number for has more value to be positive minus
 		}
 	}
@@ -244,21 +242,34 @@ int checkNumber()
 			number1 = (rand() % 50) + number2; // random number at 1-first number for has more value to be positive minus
 		}	
 	}
-	else if (playerLevel == 4 || playerLevel == 5) // random 1-50
-	{
-		
-		number1 = (rand() % 50) + 2; 
-		number2 = (rand() % 10) + 2; // secondary number is less than 10
-		printf("%d %d %d", number1, number2 , number1 % number2);
-		if (number1 % number2 != 0) 
+	else if (playerLevel == 4) // random 1-50
+	{	
+	number1 = (rand() % 50) + 2; 
+	number2 = (rand() % 10) + 2; // secondary number is less than 10
+	
+		if (number2 >= number1) // check number to be unnegative ex. -1 -2 -3
 		{
-			number2 -= (number1 % number2); //try to be odd and even number
-			if (number1 % number2 != 0) // For make sure second number should be divided correctly
-			{ 
-				number1 += (number1 % number2);
+			srand(time(0)); // generate new number
+			number1 = (rand() % 50) + number2; // random number at 1-first number for has more value to be positive minus
+		}	
+	}
+	else if (playerLevel == 5) // random 1-50
+	{
+
+		number1 = (rand() % 50) + 1; 
+		number2 = (rand() % 10) + 1; // secondary number is less than 10
+		if (number2 >= number1) // check number to be unnegative ex. -1 -2 -3
+		{
+			number1 *= number2; 
+		}	
+		printf("%d %d %d", number1, number2 , number1 % number2);
+			if (number1 % number2 != 0) 
+			{
+				if (number1 % number2 != 0) // For make sure second number should be divided correctly
+				{ 
+					number1 *= number2;
+				}
 			}
-		}
-		
 	}
 }
 
@@ -301,6 +312,7 @@ int checkAnswer() // Check answer if correct or no
 		printf("And The correct answer is %d", Ans);
 		return 0; // return 0 for wrong answer
 	}
+	
 }
 
 // ---------- Level ------------
