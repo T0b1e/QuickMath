@@ -212,26 +212,12 @@ int checkNumber()
 
 	srand(time(0)); // generate new seed each attemp
 	
-	if (playerLevel == 1) // Random number 1-10
+	if (playerLevel == 1 || playerLevel == 2) // Random number 1-10
 	{
 		number1 = (rand() % 10) + 1;
 		number2 = (rand() % 10) + 1;
-		
-		if (number1 == number2)
-		{
-			number2 = (rand() % 10) + 1; // generate new number to be not same as number 1
-		}
 	}
-	else if (playerLevel == 2) // random 1-10
-	{
-		number1 = (rand() % 10) + 1;
-		number2 = (rand() % 10) + 2;
-		
-		if (number2 >= number1) // check number to be unnegative ex. -1 -2 -3
-		{
-			number1 = (rand() % 10) + number2; // random number at 1-first number for has more value to be positive minus
-		}
-	}
+	
 	else if (playerLevel == 3) // random 1-50
 	{
 		number1 = (rand() % 50) + 2; 
@@ -242,16 +228,11 @@ int checkNumber()
 			number1 = (rand() % 50) + number2; // random number at 1-first number for has more value to be positive minus
 		}	
 	}
+	
 	else if (playerLevel == 4) // random 1-50
 	{	
-	number1 = (rand() % 50) + 2; 
-	number2 = (rand() % 10) + 2; // secondary number is less than 10
-	
-		if (number2 >= number1) // check number to be unnegative ex. -1 -2 -3
-		{
-			srand(time(0)); // generate new number
-			number1 = (rand() % 50) + number2; // random number at 1-first number for has more value to be positive minus
-		}	
+		number1 = (rand() % 50) + 2; 
+		number2 = (rand() % 10) + 2; // secondary number is less than 10
 	}
 	else if (playerLevel == 5) // random 1-50
 	{
@@ -260,16 +241,16 @@ int checkNumber()
 		number2 = (rand() % 10) + 1; // secondary number is less than 10
 		if (number2 >= number1) // check number to be unnegative ex. -1 -2 -3
 		{
-			number1 *= number2; 
+			srand(time(0)); // generate new number
+			number1 = (rand() % 50) + number2; // random number at 1-first number for has more value to be positive minus
 		}	
+		
 		printf("%d %d %d", number1, number2 , number1 % number2);
-			if (number1 % number2 != 0) 
-			{
-				if (number1 % number2 != 0) // For make sure second number should be divided correctly
-				{ 
-					number1 *= number2;
-				}
-			}
+		
+		if (number1 % number2 != 0) 
+		{
+			number1 *= number2;
+		}
 	}
 }
 
@@ -319,16 +300,23 @@ int checkAnswer() // Check answer if correct or no
 
 int levelOne() //level 1
 {
-	Ans = number1 + number2;
 	printf("\n	%d + %d = \n", number1, number2); // Show Question
-	return Ans;
+	return number1 + number2;
 }
 
 int levelTwo() //level 2
 {
-	Ans = number1 - number2;
-	printf("\n	%d - %d = \n", number1, number2); // Show Question
-	return Ans;
+	if (number2 > number1)
+	{
+		printf("\n	%d - %d = \n", number2, number1); // Show Question
+		return number2 - number1;
+	}
+	else
+	{
+		printf("\n	%d - %d = \n", number1, number2); // Show Question
+		return number1 - number2;
+	}
+	
 }
 
 int levelThree() //level 3
@@ -350,14 +338,12 @@ int levelThree() //level 3
 
 int levelFour() //level 4
 {
-	Ans = number1 * number2;
 	printf("\n	%d * %d = \n", number1, number2); // Show Question
-	return Ans;
+	return number1 * number2;;
 }
 
 int levelFive() //level 5
 {
-	int Ans = number1 / number2;
 	printf("\n	%d / %d = \n", number1, number2); // Show Question
-	return Ans;
+	return number1 / number2;
 }
