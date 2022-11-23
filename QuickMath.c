@@ -10,7 +10,6 @@
 char start(); // text when start game
 char howToPlay(); // text page how to play function
 
-void state();  // Board Above Question Number Attemp Level 
 void mainGame(); // Function call main process
 int checkNumber(); // Checking numberical for reduce negative number
 
@@ -52,15 +51,6 @@ main()
 
 // ---------- Default ------------
 
-void state() // Board
-{
-	printf("\n------------------------\n");
-	printf("Attemp : %d ", number);
-	printf("Health : %d \n", health);
-	printf("Level : %d ", playerLevel);
-	printf("Point : %d \n", playerScore);
-}
-
 void mainGame()
 {	
 	clock_t t;
@@ -72,7 +62,9 @@ void mainGame()
 		
 		checkNumber	(); // When level reach 4-5 i decrease hard
 		
-		state(); // Show Board
+		// Show Board
+		printf("\n --------------------------------------------\n");
+		printf(" Attemp : %d Level : %d Point : %d Health : %d \n\n", number, playerLevel, playerScore, health);
 		
 		// Check Player Level And Go on Each Level Function
 		if (playerLevel == 1) 		{ a = levelOne();}
@@ -130,11 +122,11 @@ char start() // Start Page
 	printf("              			    	   Hello And Welcome To\n");
 	printf("						Quick Math");
 	printf("\n\n\n");
-	printf("						Play (y)\n");
-	printf("                                            How to play (h)\n");
-	printf("						Exit (q)\n");
+	printf("						Play (y)\n\n");
+	printf("                                            How to play (h)\n\n");
+	printf("						Exit (q)\n\n");
 	printf("\n\n\n");
-	printf("ENTER : ");
+	printf(" ENTER : ");
 	scanf("%s", &state);
 	return state; // return state value (y, h, q)
 }
@@ -258,7 +250,7 @@ int checkNumber()
 
 int userInput() 
 {
-	printf("\nYour Answer: ");
+	// printf("\nYour Answer: ");
     scanf("%d", &playerAnswer);
     if (playerAnswer){ playerAnswer; } // Check if user input something isn't NULL or EMPTY
     else {
@@ -271,7 +263,7 @@ int checkAnswer() // Check answer if correct or no
 {
 	if (a == u) // Correct Answer
 	{
-		printf("Correct\n");
+		printf("\n Correct   \n");
 		playerScore += 10; // Add point 10 points
 		
 		if (playerScore <= 20) { playerLevel = 1 ; return 1;} // return 1 it mean correct
@@ -289,8 +281,7 @@ int checkAnswer() // Check answer if correct or no
 	else // If answer wrong or any case sensitive
 	{
 		health -= 1;
-		printf("Wrong\n");
-		printf("And The correct answer is %d", Ans);
+		printf("\n Wrong Answer is %d\n", Ans);
 		return 0; // return 0 for wrong answer
 	}
 	
@@ -300,7 +291,7 @@ int checkAnswer() // Check answer if correct or no
 
 int levelOne() //level 1
 {
-	printf("\n	%d + %d = \n", number1, number2); // Show Question
+	printf("\n	%d + %d = ", number1, number2); // Show Question
 	return number1 + number2;
 }
 
@@ -308,12 +299,12 @@ int levelTwo() //level 2
 {
 	if (number2 > number1)
 	{
-		printf("\n	%d - %d = \n", number2, number1); // Show Question
+		printf("\n	%d - %d = ", number2, number1); // Show Question
 		return number2 - number1;
 	}
 	else
 	{
-		printf("\n	%d - %d = \n", number1, number2); // Show Question
+		printf("\n	%d - %d = ", number1, number2); // Show Question
 		return number1 - number2;
 	}
 	
@@ -324,13 +315,13 @@ int levelThree() //level 3
 	int num = (rand() % 2) + 1; // random number 1-2
 	if (num == 1)
 	{
-		printf("\n    %d + %d = \n", number1, number2);
+		printf("\n      %d + %d = ", number1, number2);
 		Ans = number1 + number2;
 
 	} 
 	else
 	{
-		printf("\n    %d - %d = \n", number1, number2);
+		printf("\n      %d - %d = ", number1, number2);
 		Ans = number1 - number2;
 	}
 	return Ans;
@@ -338,12 +329,12 @@ int levelThree() //level 3
 
 int levelFour() //level 4
 {
-	printf("\n	%d * %d = \n", number1, number2); // Show Question
+	printf("\n	%d * %d = ", number1, number2); // Show Question
 	return number1 * number2;;
 }
 
 int levelFive() //level 5
 {
-	printf("\n	%d / %d = \n", number1, number2); // Show Question
+	printf("\n	%d / %d = ", number1, number2); // Show Question
 	return number1 / number2;
 }
