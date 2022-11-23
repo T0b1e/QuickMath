@@ -19,7 +19,6 @@ int levelThree(); // +, -
 int levelFour(); // *
 int levelFive(); // /
 
-int userInput(); // get user answer
 int checkAnswer(); // check if correct or wrong
 
 char endGame(); // text page endGame function
@@ -27,7 +26,7 @@ char endGame(); // text page endGame function
 // ---------- Global Var ------------
 
 int number1, number2; // Change everytime and use in a lot of func so it would be wasier if i did global var
-int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, Ans, a = 1, u = 1; 
+int playerScore = 0, playerLevel = 1, number = 1, playerAnswer, ans, a = 1, u = 1; 
 int health = 3;
 main()
 {
@@ -75,7 +74,8 @@ void mainGame()
 		else { printf("Invalid"); }
 		
 		// Get user answer
-		u = userInput();
+		scanf("%d", &playerAnswer);
+		
 		// Check answer is correct or no
 		c = checkAnswer();
 		
@@ -98,7 +98,7 @@ void mainGame()
 				else // Go again
 				{
 					// Reset Valiable
-					playerScore = 0; playerLevel = 1; number = 1; playerAnswer; Ans, health = 3;
+					playerScore = 0; playerLevel = 1; number = 1; playerAnswer; ans, health = 3;
 					continue;
 				}
 			}
@@ -159,6 +159,7 @@ char howToPlay() // How To Play Page
 	printf("Else if your answer is Wrong Then Game Will be over and you can try again by typing y in CMD\n");
 	printf("If there has any bug or Error I am aplogize for that, We will find and improve as soon as possible\n");
 	printf("Hope you Enjoy\n");
+	
 	
 	printf("\nLet Play or Exit (Y/n) ?"); // For get out of this page
 	scanf("%s", &letPlay); 
@@ -223,8 +224,8 @@ int checkNumber()
 	
 	else if (playerLevel == 4) // random 1-50
 	{	
-		number1 = (rand() % 50) + 2; 
-		number2 = (rand() % 10) + 2; // secondary number is less than 10
+		number1 = (rand() % 50) + 1; 
+		number2 = (rand() % 10) + 1; // secondary number is less than 10
 	}
 	else if (playerLevel == 5) // random 1-50
 	{
@@ -248,20 +249,9 @@ int checkNumber()
 
 // ---------- Get Input and Check Answer ------------
 
-int userInput() 
-{
-	// printf("\nYour Answer: ");
-    scanf("%d", &playerAnswer);
-    if (playerAnswer){ playerAnswer; } // Check if user input something isn't NULL or EMPTY
-    else {
-    	return 0;
-	}
-
-}
-
 int checkAnswer() // Check answer if correct or no
 {
-	if (a == u) // Correct Answer
+	if (a == playerAnswer) // Correct Answer
 	{
 		printf("\n Correct   \n");
 		playerScore += 10; // Add point 10 points
@@ -281,7 +271,7 @@ int checkAnswer() // Check answer if correct or no
 	else // If answer wrong or any case sensitive
 	{
 		health -= 1;
-		printf("\n Wrong Answer is %d\n", Ans);
+		printf("\n Wrong Answer is %d\n", ans);
 		return 0; // return 0 for wrong answer
 	}
 	
@@ -292,7 +282,8 @@ int checkAnswer() // Check answer if correct or no
 int levelOne() //level 1
 {
 	printf("\n	%d + %d = ", number1, number2); // Show Question
-	return number1 + number2;
+	ans = number1 + number2;
+	return ans;
 }
 
 int levelTwo() //level 2
@@ -300,12 +291,14 @@ int levelTwo() //level 2
 	if (number2 > number1)
 	{
 		printf("\n	%d - %d = ", number2, number1); // Show Question
-		return number2 - number1;
+		ans = number1 - number2;
+		return ans;
 	}
 	else
 	{
 		printf("\n	%d - %d = ", number1, number2); // Show Question
-		return number1 - number2;
+		ans = number1 - number2;
+		return ans;
 	}
 	
 }
@@ -316,25 +309,27 @@ int levelThree() //level 3
 	if (num == 1)
 	{
 		printf("\n      %d + %d = ", number1, number2);
-		Ans = number1 + number2;
+		ans = number1 + number2;
 
 	} 
 	else
 	{
 		printf("\n      %d - %d = ", number1, number2);
-		Ans = number1 - number2;
+		ans = number1 - number2;
 	}
-	return Ans;
+	return ans;
 }
 
 int levelFour() //level 4
 {
 	printf("\n	%d * %d = ", number1, number2); // Show Question
-	return number1 * number2;;
+	ans = number1 * number2;
+	return ans;
 }
 
 int levelFive() //level 5
 {
 	printf("\n	%d / %d = ", number1, number2); // Show Question
-	return number1 / number2;
+	ans = number1 / number2;
+	return ans;
 }
